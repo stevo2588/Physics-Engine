@@ -1,0 +1,121 @@
+\hypertarget{class_matrix3_d}{\section{Matrix3\-D Class Reference}
+\label{class_matrix3_d}\index{Matrix3\-D@{Matrix3\-D}}
+}
+
+
+{\ttfamily \#include $<$Utility.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_matrix3_d_afe9c6b7abe858fe9f6aea8f0607a00a7}{Matrix3\-D} ()
+\item 
+\hyperlink{class_matrix3_d_a3815dcfb26b7124d89a5c9f6b166ff5f}{Matrix3\-D} (double elem\mbox{[}row\-Size\mbox{]}\mbox{[}column\-Size\mbox{]})
+\item 
+\hyperlink{class_matrix3_d_a41fbb4c0c742c10a21343486a42a0e56}{Matrix3\-D} (double x, double y, double z)
+\item 
+void \hyperlink{class_matrix3_d_aec51075342822cfb4a2356ad6b970153}{set\-I\-D\-Mat} ()
+\item 
+void \hyperlink{class_matrix3_d_a6d9200e3ad1f997cb1bebcc9277f2b41}{get\-Elements} (double(\&e)\mbox{[}row\-Size\mbox{]}\mbox{[}column\-Size\mbox{]}) const 
+\item 
+double \hyperlink{class_matrix3_d_af226f6ecbf1240a56bd7f00c2a54f530}{get\-Elem} (int row, int column) const 
+\item 
+bool \hyperlink{class_matrix3_d_a0260b566bbd5579a3a2c393ef9c09eb0}{get\-Inversion} (\hyperlink{class_matrix3_d}{Matrix3\-D} \&inv\-Out)
+\item 
+\hyperlink{class_matrix3_d}{Matrix3\-D} \& \hyperlink{class_matrix3_d_a8049b657a2c0a150f95194a75e90789c}{operator=} (const \hyperlink{class_matrix3_d}{Matrix3\-D} \&rhs)
+\item 
+std\-::string \hyperlink{class_matrix3_d_a3f99e2bf75e31b08646b79b2c9756d14}{to\-String} () const 
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_matrix3_d}{Matrix3\-D} \hyperlink{class_matrix3_d_a8aeebbc7c89ec0a85a08aee0d87c6aae}{operator$\ast$} (const \hyperlink{class_matrix3_d}{Matrix3\-D} \&s1, const \hyperlink{class_matrix3_d}{Matrix3\-D} \&s2)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_matrix3_d_afe9c6b7abe858fe9f6aea8f0607a00a7}{\index{Matrix3\-D@{Matrix3\-D}!Matrix3\-D@{Matrix3\-D}}
+\index{Matrix3\-D@{Matrix3\-D}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{Matrix3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Matrix3\-D\-::\-Matrix3\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_matrix3_d_afe9c6b7abe858fe9f6aea8f0607a00a7}
+\hypertarget{class_matrix3_d_a3815dcfb26b7124d89a5c9f6b166ff5f}{\index{Matrix3\-D@{Matrix3\-D}!Matrix3\-D@{Matrix3\-D}}
+\index{Matrix3\-D@{Matrix3\-D}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{Matrix3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Matrix3\-D\-::\-Matrix3\-D (
+\begin{DoxyParamCaption}
+\item[{double}]{elem\mbox{[}row\-Size\mbox{]}\mbox{[}column\-Size\mbox{]}}
+\end{DoxyParamCaption}
+)}}\label{class_matrix3_d_a3815dcfb26b7124d89a5c9f6b166ff5f}
+\hypertarget{class_matrix3_d_a41fbb4c0c742c10a21343486a42a0e56}{\index{Matrix3\-D@{Matrix3\-D}!Matrix3\-D@{Matrix3\-D}}
+\index{Matrix3\-D@{Matrix3\-D}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{Matrix3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Matrix3\-D\-::\-Matrix3\-D (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{double}]{y, }
+\item[{double}]{z}
+\end{DoxyParamCaption}
+)}}\label{class_matrix3_d_a41fbb4c0c742c10a21343486a42a0e56}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_matrix3_d_af226f6ecbf1240a56bd7f00c2a54f530}{\index{Matrix3\-D@{Matrix3\-D}!get\-Elem@{get\-Elem}}
+\index{get\-Elem@{get\-Elem}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{get\-Elem}]{\setlength{\rightskip}{0pt plus 5cm}double Matrix3\-D\-::get\-Elem (
+\begin{DoxyParamCaption}
+\item[{int}]{row, }
+\item[{int}]{column}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_matrix3_d_af226f6ecbf1240a56bd7f00c2a54f530}
+\hypertarget{class_matrix3_d_a6d9200e3ad1f997cb1bebcc9277f2b41}{\index{Matrix3\-D@{Matrix3\-D}!get\-Elements@{get\-Elements}}
+\index{get\-Elements@{get\-Elements}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{get\-Elements}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix3\-D\-::get\-Elements (
+\begin{DoxyParamCaption}
+\item[{double(\&)}]{e\mbox{[}row\-Size\mbox{]}\mbox{[}column\-Size\mbox{]}}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_matrix3_d_a6d9200e3ad1f997cb1bebcc9277f2b41}
+\hypertarget{class_matrix3_d_a0260b566bbd5579a3a2c393ef9c09eb0}{\index{Matrix3\-D@{Matrix3\-D}!get\-Inversion@{get\-Inversion}}
+\index{get\-Inversion@{get\-Inversion}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{get\-Inversion}]{\setlength{\rightskip}{0pt plus 5cm}bool Matrix3\-D\-::get\-Inversion (
+\begin{DoxyParamCaption}
+\item[{{\bf Matrix3\-D} \&}]{inv\-Out}
+\end{DoxyParamCaption}
+)}}\label{class_matrix3_d_a0260b566bbd5579a3a2c393ef9c09eb0}
+\hypertarget{class_matrix3_d_a8049b657a2c0a150f95194a75e90789c}{\index{Matrix3\-D@{Matrix3\-D}!operator=@{operator=}}
+\index{operator=@{operator=}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix3\-D}\& Matrix3\-D\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix3\-D} \&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{class_matrix3_d_a8049b657a2c0a150f95194a75e90789c}
+\hypertarget{class_matrix3_d_aec51075342822cfb4a2356ad6b970153}{\index{Matrix3\-D@{Matrix3\-D}!set\-I\-D\-Mat@{set\-I\-D\-Mat}}
+\index{set\-I\-D\-Mat@{set\-I\-D\-Mat}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{set\-I\-D\-Mat}]{\setlength{\rightskip}{0pt plus 5cm}void Matrix3\-D\-::set\-I\-D\-Mat (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_matrix3_d_aec51075342822cfb4a2356ad6b970153}
+\hypertarget{class_matrix3_d_a3f99e2bf75e31b08646b79b2c9756d14}{\index{Matrix3\-D@{Matrix3\-D}!to\-String@{to\-String}}
+\index{to\-String@{to\-String}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{to\-String}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string Matrix3\-D\-::to\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_matrix3_d_a3f99e2bf75e31b08646b79b2c9756d14}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_matrix3_d_a8aeebbc7c89ec0a85a08aee0d87c6aae}{\index{Matrix3\-D@{Matrix3\-D}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Matrix3D@{Matrix3\-D}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Matrix3\-D} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix3\-D} \&}]{s1, }
+\item[{const {\bf Matrix3\-D} \&}]{s2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_matrix3_d_a8aeebbc7c89ec0a85a08aee0d87c6aae}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Development/\-My\-Projects/\-Physically\-Based\-Modeling/include/\hyperlink{_utility_8h}{Utility.\-h}\end{DoxyCompactItemize}

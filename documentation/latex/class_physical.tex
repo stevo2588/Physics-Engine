@@ -1,0 +1,110 @@
+\hypertarget{class_physical}{\section{Physical Class Reference}
+\label{class_physical}\index{Physical@{Physical}}
+}
+
+
+{\ttfamily \#include $<$Physical.\-h$>$}
+
+Inheritance diagram for Physical\-:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_physical}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{class_physical_a61419e993f622482a2c2ae4614a16944}{update} (const \hyperlink{class_p_b_time}{P\-B\-Time} \&\hyperlink{_physically_based_8h_a766da334af281a8fa1ed5cf404d0ec45}{the\-Time}, const std\-::vector$<$ \hyperlink{class_force}{Force} $>$ \&forces, const std\-::vector$<$ \hyperlink{class_force}{Force} $>$ \&accels)
+\item 
+\hyperlink{class_physical}{Physical} $\ast$ \hyperlink{class_physical_a3ba7964e2b399a96b5c306328ff9367d}{get\-Updated} (const \hyperlink{class_p_b_time}{P\-B\-Time} \&\hyperlink{_physically_based_8h_a766da334af281a8fa1ed5cf404d0ec45}{the\-Time}, const std\-::vector$<$ \hyperlink{class_force}{Force} $>$ \&forces, const std\-::vector$<$ \hyperlink{class_force}{Force} $>$ \&accels)
+\item 
+virtual \hyperlink{class_deferred_force}{Deferred\-Force} $\ast$ \hyperlink{class_physical_aaa95a85d67ec076d41a301e546661452}{get\-Collision\-Force} ()=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_physical_ac11a1bca87389886d9d8291fef41ad8c}{Physical} ()
+\item 
+virtual void \hyperlink{class_physical_ac2f0c203798c646a9bffc9ef2bb64185}{update} (const \hyperlink{class_p_b_time}{P\-B\-Time} \&\hyperlink{_physically_based_8h_a766da334af281a8fa1ed5cf404d0ec45}{the\-Time}, \hyperlink{class_collidable_object}{Collidable\-Object} \&co)
+\item 
+virtual void \hyperlink{class_physical_a4aae3956fcf233e43d0bd65d942c4d7b}{update} (const \hyperlink{class_p_b_time}{P\-B\-Time} \&\hyperlink{_physically_based_8h_a766da334af281a8fa1ed5cf404d0ec45}{the\-Time}, \hyperlink{class_physical}{Physical} \&p, const std\-::vector$<$ \hyperlink{class_force}{Force} $>$ \&forces, const std\-::vector$<$ \hyperlink{class_force}{Force} $>$ \&accels)=0
+\item 
+virtual \hyperlink{class_physical}{Physical} $\ast$ \hyperlink{class_physical_a8e6b99aec0d99df8e330881a25d936e6}{clone} () const =0
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_physical_ac11a1bca87389886d9d8291fef41ad8c}{\index{Physical@{Physical}!Physical@{Physical}}
+\index{Physical@{Physical}!Physical@{Physical}}
+\subsubsection[{Physical}]{\setlength{\rightskip}{0pt plus 5cm}Physical\-::\-Physical (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}}\label{class_physical_ac11a1bca87389886d9d8291fef41ad8c}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_physical_a8e6b99aec0d99df8e330881a25d936e6}{\index{Physical@{Physical}!clone@{clone}}
+\index{clone@{clone}!Physical@{Physical}}
+\subsubsection[{clone}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Physical}$\ast$ Physical\-::clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_physical_a8e6b99aec0d99df8e330881a25d936e6}
+
+
+Implements \hyperlink{class_collidable_object_af7d1cf4164b033a6e68c5988d4b8aeb8}{Collidable\-Object}.
+
+\hypertarget{class_physical_aaa95a85d67ec076d41a301e546661452}{\index{Physical@{Physical}!get\-Collision\-Force@{get\-Collision\-Force}}
+\index{get\-Collision\-Force@{get\-Collision\-Force}!Physical@{Physical}}
+\subsubsection[{get\-Collision\-Force}]{\setlength{\rightskip}{0pt plus 5cm}virtual {\bf Deferred\-Force}$\ast$ Physical\-::get\-Collision\-Force (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [pure virtual]}}}\label{class_physical_aaa95a85d67ec076d41a301e546661452}
+\hypertarget{class_physical_a3ba7964e2b399a96b5c306328ff9367d}{\index{Physical@{Physical}!get\-Updated@{get\-Updated}}
+\index{get\-Updated@{get\-Updated}!Physical@{Physical}}
+\subsubsection[{get\-Updated}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Physical}$\ast$ Physical\-::get\-Updated (
+\begin{DoxyParamCaption}
+\item[{const {\bf P\-B\-Time} \&}]{the\-Time, }
+\item[{const std\-::vector$<$ {\bf Force} $>$ \&}]{forces, }
+\item[{const std\-::vector$<$ {\bf Force} $>$ \&}]{accels}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_physical_a3ba7964e2b399a96b5c306328ff9367d}
+\hypertarget{class_physical_a61419e993f622482a2c2ae4614a16944}{\index{Physical@{Physical}!update@{update}}
+\index{update@{update}!Physical@{Physical}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}void Physical\-::update (
+\begin{DoxyParamCaption}
+\item[{const {\bf P\-B\-Time} \&}]{the\-Time, }
+\item[{const std\-::vector$<$ {\bf Force} $>$ \&}]{forces, }
+\item[{const std\-::vector$<$ {\bf Force} $>$ \&}]{accels}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_physical_a61419e993f622482a2c2ae4614a16944}
+\hypertarget{class_physical_ac2f0c203798c646a9bffc9ef2bb64185}{\index{Physical@{Physical}!update@{update}}
+\index{update@{update}!Physical@{Physical}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Physical\-::update (
+\begin{DoxyParamCaption}
+\item[{const {\bf P\-B\-Time} \&}]{the\-Time, }
+\item[{{\bf Collidable\-Object} \&}]{co}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}}\label{class_physical_ac2f0c203798c646a9bffc9ef2bb64185}
+
+
+Implements \hyperlink{class_collidable_object_a20734a532bf708d8fb5856483d5b8ed2}{Collidable\-Object}.
+
+\hypertarget{class_physical_a4aae3956fcf233e43d0bd65d942c4d7b}{\index{Physical@{Physical}!update@{update}}
+\index{update@{update}!Physical@{Physical}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}virtual void Physical\-::update (
+\begin{DoxyParamCaption}
+\item[{const {\bf P\-B\-Time} \&}]{the\-Time, }
+\item[{{\bf Physical} \&}]{p, }
+\item[{const std\-::vector$<$ {\bf Force} $>$ \&}]{forces, }
+\item[{const std\-::vector$<$ {\bf Force} $>$ \&}]{accels}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}}\label{class_physical_a4aae3956fcf233e43d0bd65d942c4d7b}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Development/\-My\-Projects/\-Physically\-Based\-Modeling/include/\hyperlink{_physical_8h}{Physical.\-h}\end{DoxyCompactItemize}

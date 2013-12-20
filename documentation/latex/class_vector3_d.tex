@@ -1,0 +1,199 @@
+\hypertarget{class_vector3_d}{\section{Vector3\-D Class Reference}
+\label{class_vector3_d}\index{Vector3\-D@{Vector3\-D}}
+}
+
+
+{\ttfamily \#include $<$Utility.\-h$>$}
+
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_vector3_d_a0b11a8d75da427b27443d8a94d0d296c}{Vector3\-D} ()
+\item 
+\hyperlink{class_vector3_d_abd851542da40b1168edcad11fa83b7c2}{Vector3\-D} (double x, double y, double z)
+\item 
+double \hyperlink{class_vector3_d_a9e900adfd823b6293f1bf01d84b9fff6}{calc\-Magnitude} () const 
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_a5b3059961eb8b4db3dc6b79f283dcac1}{normalize} () const 
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \& \hyperlink{class_vector3_d_a65c133291142447f6bdbdc4425303078}{operator=} (const \hyperlink{class_vector3_d}{Vector3\-D} \&rhs)
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \& \hyperlink{class_vector3_d_a3448ab3b394051519147d76647e7f006}{operator+=} (const \hyperlink{class_vector3_d}{Vector3\-D} \&rhs)
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \& \hyperlink{class_vector3_d_a571ef878a82e754c9280c9f4eb2d990b}{operator-\/=} (const \hyperlink{class_vector3_d}{Vector3\-D} \&rhs)
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_a03f189f8d45eda497772364d19d30c7d}{operator-\/} () const 
+\item 
+double \hyperlink{class_vector3_d_a9eea2c879cc0721b71925088fecbab9c}{dot\-Product} (const \hyperlink{class_vector3_d}{Vector3\-D} \&v) const 
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_a39ad41be410fec3615f471bde6e17321}{cross\-Product} (const \hyperlink{class_vector3_d}{Vector3\-D} \&v)
+\item 
+std\-::string \hyperlink{class_vector3_d_a37dfc4a95d1af4ce314852b54a2f6227}{to\-String} () const 
+\end{DoxyCompactItemize}
+\subsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+double \hyperlink{class_vector3_d_a3c92dcba304b8b23c9961eb5ccfbed63}{elements} \mbox{[}size\mbox{]}
+\end{DoxyCompactItemize}
+\subsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_ac6411f933860f0e12b87da2ec1698197}{operator+} (const \hyperlink{class_vector3_d}{Vector3\-D} \&v1, const \hyperlink{class_vector3_d}{Vector3\-D} \&v2)
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_ae2b0c437a1ccad22fc33fd9750079e5e}{operator-\/} (const \hyperlink{class_vector3_d}{Vector3\-D} \&v1, const \hyperlink{class_vector3_d}{Vector3\-D} \&v2)
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_a37a1cbe0594313bd52fe13f50011add1}{operator$\ast$} (const \hyperlink{class_vector3_d}{Vector3\-D} \&v1, const double s)
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_ab833cc21e16fad258cc5445e7798aea4}{operator/} (const \hyperlink{class_vector3_d}{Vector3\-D} \&v1, const double s)
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_a7ab094401d4017867594d9e321bde89c}{operator$\ast$} (const \hyperlink{class_matrix3_d}{Matrix3\-D} \&s, const \hyperlink{class_vector3_d}{Vector3\-D} \&v)
+\item 
+\hyperlink{class_vector3_d}{Vector3\-D} \hyperlink{class_vector3_d_afd02bcb799e94637ae32829e62d519b8}{m\-\_\-mult\-\_\-dir\-Vec} (const \hyperlink{class_matrix3_d}{Matrix3\-D} \&s, const \hyperlink{class_vector3_d}{Vector3\-D} \&v)
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{class_vector3_d_a0b11a8d75da427b27443d8a94d0d296c}{\index{Vector3\-D@{Vector3\-D}!Vector3\-D@{Vector3\-D}}
+\index{Vector3\-D@{Vector3\-D}!Vector3D@{Vector3\-D}}
+\subsubsection[{Vector3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Vector3\-D\-::\-Vector3\-D (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{class_vector3_d_a0b11a8d75da427b27443d8a94d0d296c}
+\hypertarget{class_vector3_d_abd851542da40b1168edcad11fa83b7c2}{\index{Vector3\-D@{Vector3\-D}!Vector3\-D@{Vector3\-D}}
+\index{Vector3\-D@{Vector3\-D}!Vector3D@{Vector3\-D}}
+\subsubsection[{Vector3\-D}]{\setlength{\rightskip}{0pt plus 5cm}Vector3\-D\-::\-Vector3\-D (
+\begin{DoxyParamCaption}
+\item[{double}]{x, }
+\item[{double}]{y, }
+\item[{double}]{z}
+\end{DoxyParamCaption}
+)}}\label{class_vector3_d_abd851542da40b1168edcad11fa83b7c2}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{class_vector3_d_a9e900adfd823b6293f1bf01d84b9fff6}{\index{Vector3\-D@{Vector3\-D}!calc\-Magnitude@{calc\-Magnitude}}
+\index{calc\-Magnitude@{calc\-Magnitude}!Vector3D@{Vector3\-D}}
+\subsubsection[{calc\-Magnitude}]{\setlength{\rightskip}{0pt plus 5cm}double Vector3\-D\-::calc\-Magnitude (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_vector3_d_a9e900adfd823b6293f1bf01d84b9fff6}
+\hypertarget{class_vector3_d_a39ad41be410fec3615f471bde6e17321}{\index{Vector3\-D@{Vector3\-D}!cross\-Product@{cross\-Product}}
+\index{cross\-Product@{cross\-Product}!Vector3D@{Vector3\-D}}
+\subsubsection[{cross\-Product}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} Vector3\-D\-::cross\-Product (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{v}
+\end{DoxyParamCaption}
+)}}\label{class_vector3_d_a39ad41be410fec3615f471bde6e17321}
+\hypertarget{class_vector3_d_a9eea2c879cc0721b71925088fecbab9c}{\index{Vector3\-D@{Vector3\-D}!dot\-Product@{dot\-Product}}
+\index{dot\-Product@{dot\-Product}!Vector3D@{Vector3\-D}}
+\subsubsection[{dot\-Product}]{\setlength{\rightskip}{0pt plus 5cm}double Vector3\-D\-::dot\-Product (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{v}
+\end{DoxyParamCaption}
+) const}}\label{class_vector3_d_a9eea2c879cc0721b71925088fecbab9c}
+\hypertarget{class_vector3_d_a5b3059961eb8b4db3dc6b79f283dcac1}{\index{Vector3\-D@{Vector3\-D}!normalize@{normalize}}
+\index{normalize@{normalize}!Vector3D@{Vector3\-D}}
+\subsubsection[{normalize}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} Vector3\-D\-::normalize (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_vector3_d_a5b3059961eb8b4db3dc6b79f283dcac1}
+\hypertarget{class_vector3_d_a3448ab3b394051519147d76647e7f006}{\index{Vector3\-D@{Vector3\-D}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator+=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D}\& Vector3\-D\-::operator+= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{class_vector3_d_a3448ab3b394051519147d76647e7f006}
+\hypertarget{class_vector3_d_a03f189f8d45eda497772364d19d30c7d}{\index{Vector3\-D@{Vector3\-D}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} Vector3\-D\-::operator-\/ (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const}}\label{class_vector3_d_a03f189f8d45eda497772364d19d30c7d}
+\hypertarget{class_vector3_d_a571ef878a82e754c9280c9f4eb2d990b}{\index{Vector3\-D@{Vector3\-D}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator-\/=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D}\& Vector3\-D\-::operator-\/= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{class_vector3_d_a571ef878a82e754c9280c9f4eb2d990b}
+\hypertarget{class_vector3_d_a65c133291142447f6bdbdc4425303078}{\index{Vector3\-D@{Vector3\-D}!operator=@{operator=}}
+\index{operator=@{operator=}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator=}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D}\& Vector3\-D\-::operator= (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{rhs}
+\end{DoxyParamCaption}
+)}}\label{class_vector3_d_a65c133291142447f6bdbdc4425303078}
+\hypertarget{class_vector3_d_a37dfc4a95d1af4ce314852b54a2f6227}{\index{Vector3\-D@{Vector3\-D}!to\-String@{to\-String}}
+\index{to\-String@{to\-String}!Vector3D@{Vector3\-D}}
+\subsubsection[{to\-String}]{\setlength{\rightskip}{0pt plus 5cm}std\-::string Vector3\-D\-::to\-String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) const\hspace{0.3cm}{\ttfamily [inline]}}}\label{class_vector3_d_a37dfc4a95d1af4ce314852b54a2f6227}
+
+
+\subsection{Friends And Related Function Documentation}
+\hypertarget{class_vector3_d_afd02bcb799e94637ae32829e62d519b8}{\index{Vector3\-D@{Vector3\-D}!m\-\_\-mult\-\_\-dir\-Vec@{m\-\_\-mult\-\_\-dir\-Vec}}
+\index{m\-\_\-mult\-\_\-dir\-Vec@{m\-\_\-mult\-\_\-dir\-Vec}!Vector3D@{Vector3\-D}}
+\subsubsection[{m\-\_\-mult\-\_\-dir\-Vec}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} m\-\_\-mult\-\_\-dir\-Vec (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix3\-D} \&}]{s, }
+\item[{const {\bf Vector3\-D} \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_vector3_d_afd02bcb799e94637ae32829e62d519b8}
+\hypertarget{class_vector3_d_a37a1cbe0594313bd52fe13f50011add1}{\index{Vector3\-D@{Vector3\-D}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{v1, }
+\item[{const double}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_vector3_d_a37a1cbe0594313bd52fe13f50011add1}
+\hypertarget{class_vector3_d_a7ab094401d4017867594d9e321bde89c}{\index{Vector3\-D@{Vector3\-D}!operator$\ast$@{operator$\ast$}}
+\index{operator$\ast$@{operator$\ast$}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator$\ast$}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} operator$\ast$ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Matrix3\-D} \&}]{s, }
+\item[{const {\bf Vector3\-D} \&}]{v}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_vector3_d_a7ab094401d4017867594d9e321bde89c}
+\hypertarget{class_vector3_d_ac6411f933860f0e12b87da2ec1698197}{\index{Vector3\-D@{Vector3\-D}!operator+@{operator+}}
+\index{operator+@{operator+}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator+}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} operator+ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{v1, }
+\item[{const {\bf Vector3\-D} \&}]{v2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_vector3_d_ac6411f933860f0e12b87da2ec1698197}
+\hypertarget{class_vector3_d_ae2b0c437a1ccad22fc33fd9750079e5e}{\index{Vector3\-D@{Vector3\-D}!operator-\/@{operator-\/}}
+\index{operator-\/@{operator-\/}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator-\/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} operator-\/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{v1, }
+\item[{const {\bf Vector3\-D} \&}]{v2}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_vector3_d_ae2b0c437a1ccad22fc33fd9750079e5e}
+\hypertarget{class_vector3_d_ab833cc21e16fad258cc5445e7798aea4}{\index{Vector3\-D@{Vector3\-D}!operator/@{operator/}}
+\index{operator/@{operator/}!Vector3D@{Vector3\-D}}
+\subsubsection[{operator/}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Vector3\-D} operator/ (
+\begin{DoxyParamCaption}
+\item[{const {\bf Vector3\-D} \&}]{v1, }
+\item[{const double}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [friend]}}}\label{class_vector3_d_ab833cc21e16fad258cc5445e7798aea4}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{class_vector3_d_a3c92dcba304b8b23c9961eb5ccfbed63}{\index{Vector3\-D@{Vector3\-D}!elements@{elements}}
+\index{elements@{elements}!Vector3D@{Vector3\-D}}
+\subsubsection[{elements}]{\setlength{\rightskip}{0pt plus 5cm}double Vector3\-D\-::elements\mbox{[}size\mbox{]}}}\label{class_vector3_d_a3c92dcba304b8b23c9961eb5ccfbed63}
+
+
+The documentation for this class was generated from the following file\-:\begin{DoxyCompactItemize}
+\item 
+D\-:/\-Development/\-My\-Projects/\-Physically\-Based\-Modeling/include/\hyperlink{_utility_8h}{Utility.\-h}\end{DoxyCompactItemize}
