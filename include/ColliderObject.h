@@ -13,7 +13,8 @@ public:
 	typedef std::unique_ptr<CollidableObject> CollObjPtr;
 	typedef std::unique_ptr<Force> ForcePtr;
 
-	ColliderObject(Shape& collider) : CollidableObject(collider) {}
+	ColliderObject(const Object& parent, const Vector3D& pos, Shape& collider)
+	: CollidableObject(parent, pos, collider) {}
 
 	virtual ForcePtr getCollisionForce(float timestep, float timestepFrac,
 	                                   const CollidableObject& co, const Vector3D& normal) const

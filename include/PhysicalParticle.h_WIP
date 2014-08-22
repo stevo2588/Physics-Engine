@@ -1,0 +1,28 @@
+#ifndef PHYSICALPARTICLE_H
+#define PHYSICALPARTICLE_H
+
+#include <Physical.h>
+#include <Utility.h>
+
+class PhysicalParticle : public Physical {
+public:
+	PhysicalParticle() : live(false), lifeSpan(100), age(0), mass(1), velocity(0,0,0) {}
+
+	void update(const std::vector<Force>& forces, const std::vector<Force>& accels,
+	            float timestep, float currentTime)
+	{
+		
+	}
+
+	friend class ParticleSystem;
+
+private:
+	bool live;
+	float lifeSpan;
+	float age;
+	float mass;
+	Vector3D velocity;
+};
+
+
+#endif // PHYSICALPARTICLE_H

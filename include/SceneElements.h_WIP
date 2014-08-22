@@ -1,0 +1,28 @@
+#ifndef SCENE_ELEMENTS
+#define SCENE_ELEMENTS
+
+
+template <typename T>
+class SceneElements {
+public:
+	typedef std::vector< SceneElement<T> >::iterator iterator;
+	typedef std::vector< SceneElement<T> >::const_iterator const_iterator;
+
+	SceneElements() {}
+
+	SceneElement& get(int i) { return elements[i]; }
+	SceneElement& operator [](int i) { return get(i); }
+
+	iterator begin() { return elements.begin(); }
+	iterator end() { return elements.end(); }
+	const_iterator begin() const { return elements.begin(); }
+	const_iterator end() const { return elements.end(); }
+
+private:
+	std::vector< SceneElement<T> > elements;
+};
+
+
+#endif // SCENE_ELEMENTS
+
+

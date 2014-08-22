@@ -21,8 +21,8 @@ bool CollidableObject::collisionCheck(float timestep, const CollidableObject& th
 {
 	Vector3D collisionNormal;
 
-	if( collider.collision( thisUpdated.collider, other.collider, otherUpdated.collider,
-	                        timestepFrac, collisionNormal ) )
+	if( collider.get().collision( thisUpdated.collider.get(), other.collider.get(),
+	                              otherUpdated.collider.get(), timestepFrac, collisionNormal ))
 	{
 		thisCollForce = this->getCollisionForce(timestep, timestepFrac, thisUpdated, collisionNormal);
 		otherCollForce = other.getCollisionForce(timestep, timestepFrac, otherUpdated, -collisionNormal);

@@ -9,7 +9,7 @@ class ForceEnvironment {
 public:
 	typedef std::reference_wrapper<const Force> ForceRef;
 
-	ForceEnvironment();
+	ForceEnvironment() {}
 
 	enum forceType { FORCE, ACCELERATION };
 

@@ -9,17 +9,17 @@
 
 class Object {
 public:
-	Object() : renderable(NULL) {}
-	Object(const Vector3D& pos) : transform(pos.elements[0], pos.elements[1], pos.elements[2]),
-	                              renderable(NULL)
-	{}
+	// Default constructor should only be used to create WORLD node
+	Object();
 
-	// TODO LATER: Game/Draw update() function?
+	Object(const Object& parent);
+
+	Object(const Vector3D& pos, const Object& parent);
 
 	void setRenderable(Renderable* r) { renderable = r; }
 	const Renderable* getRenderable() const { return renderable; }
 
-	PBTransform transform;
+	PBObjectTransform transform;
 
 protected:
 	Renderable* renderable;

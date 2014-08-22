@@ -1,0 +1,71 @@
+#ifndef PARTICLESYSTEM_H
+#define PARTICLESYSTEM_H
+
+#include <PhysicalSpawner.h>
+#include <Physical.h>
+#include <Environment.h>
+
+class ParticleSystem : public PhysicalSpawner {
+public:
+	ParticleSystem(const Environment& env, size_t maxSize)
+	: PhysicalSpawner(env), maxSize(maxSize), liveCount(0), spawnRate(100),
+	  timeSinceLastSpawn(0)
+	{
+		particles = new Physical[maxSize];
+		for(int i=0; i<maxSize; i++) {
+			particles[i] = PhysicalParticle();
+		}
+	}
+	// TODO: ParticleSystem(const Environment& env, Physical (*create)()) : PhysicalSpawner(env) {}
+
+	void update(float timestep, float currentTime) {
+
+		int numToSpawn = 0;
+		timeSinceLastSpawn += timestep;
+
+		if(timeSinceLastSpawn > spawnRate) {
+			numToSpawn++;
+			timeSinceLastSpawn = 0;
+		}
+
+		for(int i=0; i<maxSize; i++) {
+
+			// for living particles
+			if(particles[i].live) {
+				particles[i].age += timestep;
+
+				// check if particle should be dead yet
+				if(particles[i].age >= particles[i].lifeSpan) {
+					particles[i].live = false;
+					liveCount--;
+					env.removePhysical(particles[i]);
+				}
+			}
+
+			// spawn new particles if needed
+			else if(numToSpawn) {
+				particles[i].transform = transform;
+				particles[i].age = 0;
+				particles[i].live = true;
+				particles[i].velocity = Vector3D(0,0,0);
+				numToSpawn--;
+				env.addPhysical(particles[i]);
+			}
+		}
+	}
+
+	Transform transform;
+
+private:
+	size_t maxSize;
+	size_t liveCount;
+	Physical *particles;
+	float spawnRate;
+	float timeSinceLastSpawn;
+};
+
+
+
+#endif // PARTICLESYSTEM_H
+
+

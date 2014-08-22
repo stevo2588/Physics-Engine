@@ -1,0 +1,18 @@
+#ifndef PHYSICALSPAWNER_H
+#define PHYSICALSPAWNER_H
+
+#include <Environment.h>
+
+// Spawns Physicals
+
+class PhysicalSpawner {
+public:
+	virtual void update()=0;
+
+protected:
+	PhysicalSpawner(const Environment& env) : env(env) {}
+
+	const Environment& env;
+};
+
+#endif // PHYSICALSPAWNER_H

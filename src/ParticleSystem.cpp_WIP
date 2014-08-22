@@ -1,0 +1,13 @@
+#include <ParticleSystem.h>
+
+ParticleSystem::ParticleSystem(int maxSize, const Vector3D& pos)
+	: maxSize(maxSize), pos(pos)
+{
+	partPos = new Vector3D[maxSize];
+	partVel = new Vector3D[maxSize];
+	newPos = new Vector3D[maxSize];
+	newVel = new Vector3D[maxSize];
+}
+
+
+

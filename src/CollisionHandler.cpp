@@ -5,6 +5,7 @@
 #include <Sphere.h>
 #include <Utility.h>
 
+#include <iostream> // TODO REMOVE
 #include <cmath>
 
 // TODO LATER: Lots to do here
@@ -59,12 +60,9 @@ bool CollisionHandler::collision(const QuadPlane& qp, const QuadPlane& qpUpdated
 	// and doesn't take into account if rate of acceleration is non-linear)
 	// collisionPos = p0 + (timestepFrac * (p1 - p0))
 	// 
-	// Check if the collision position is within the quad:
 	// TODO
+	// Check if the collision position is within the quad:
 	
-	// TODO NOW
-	// Transform Sphere into plane space
-	//s.transform.applyTransform(qp.transform.getInverse());
 	PBTransform sTrans = qp.transform.transformOther(s.transform);
 	PBTransform sUpTrans = qp.transform.transformOther(sUpdated.transform);
 	
@@ -78,6 +76,7 @@ bool CollisionHandler::collision(const QuadPlane& qp, const QuadPlane& qpUpdated
 
 	timestepFrac = std::abs(D0/(D1-D0));
 	collisionNormal = qp.getNorm();
+	std::cout << "collision!" << std::endl;
 	return true;
 	
 	/*

@@ -13,11 +13,6 @@ Environment::Environment() : collidableCount(0), physicalCount(0), forceEnvCount
 {
 }
 
-Environment::Environment(const PBTransform& t) : transform(t), collidableCount(0),
-                                               physicalCount(0), forceEnvCount(0)
-{
-}
-
 void Environment::addForceEnvironment(ForceEnvironment& fe) {
 	forceEnvs.push_back( ForceEnvRef(fe) );
 	forceEnvCount++;
@@ -31,6 +26,8 @@ void Environment::addCollidable(CollidableObject& co) {
 void Environment::addPhysical(Physical& ph) {
 	physicals.push_back( PhysicalRef(ph) );
 	physicalCount++;
+	physicalsForces.push_back( std::vector<ForceRef>() );
+	physicalsAccels.push_back( std::vector<ForceRef>() );
 }
 
 // TODO LATER: update and unlink too?
@@ -120,7 +117,6 @@ bool Environment::earliestCollision(const PBTime& theTime, float& timestepFrac,
 	if(objectAIndex != -1) return true;
 
 	return false;
-
 }
 
 // Update every object by the timestep. 

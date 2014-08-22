@@ -14,6 +14,7 @@ class CollidableObject : public Object {
 public:
 	typedef std::unique_ptr<CollidableObject> CollObjPtr;
 	typedef std::unique_ptr<Force> ForcePtr;
+	typedef std::reference_wrapper<Shape> ShapeRef;
 
 	// Updates this CollidableObject
 	void update(const PBTime& theTime);
@@ -22,8 +23,7 @@ public:
 
 	// Get the force this object exerts during collision
 	// NOTE: the timestep at which the collision occurred is at timestep*timestepFrac
-	virtual
-	ForcePtr getCollisionForce(float timestep, float timestepFrac,
+	virtual ForcePtr getCollisionForce(float timestep, float timestepFrac,
 	                           const CollidableObject& updated, const Vector3D& normal)const=0;
 
 	// Checks for a collision with the CollidableObject that would occur in the given timestep.
@@ -35,18 +35,21 @@ public:
 	                    float& timestepFrac, ForcePtr& thisCollForce, ForcePtr& otherCollForce);
 	
 	void addCollider(Shape& c) {
-		collider = c;
+		collider = ShapeRef(c);
 	}
  
 protected:
-	CollidableObject(Shape& collider) : collider(collider) {}
+	CollidableObject(const Object& parent, Shape& collider)
+	: Object(parent), collider(collider) {}
+	CollidableObject(const Object& parent, const Vector3D& pos, Shape& collider)
+	: Object(pos,parent), collider(collider) {}
 
 	virtual void update(const PBTime& theTime, CollidableObject& co)=0;
 
 	virtual CollObjPtr clone() const=0;
 
-	// TODO LATER: create Collider class
-	Shape& collider;
+	// TODO LATER: create Collider class so that collider doesn't have to be a shape
+	ShapeRef collider;
 
 	/*
 	<typename T1, typename T2>

@@ -1,0 +1,22 @@
+#ifndef TRIANGLE_H
+#define TRIANGLE_H
+
+class Triangle {
+private:
+	Vector3D normal;
+	Vector3D v0, v1;
+	Vector3D p0, p1, p2;
+	Vector2D uv0, uv1, uv2;
+	float d00, d01, d11;
+	float denom;
+
+public:
+	Triangle(const Vector3D& norm, const Vector3D p0, const Vector3D p1, const Vector3D p2);
+	Triangle(const Vector3D p0, const Vector3D p1, const Vector3D p2);
+	//bool intersection(const Ray& r, Hit *h) const;
+	//bool boxIntersection(const Box& box) const;
+	Vector3D getNormal() const {return normal;}
+};
+
+
+#endif // TRIANGLE_H

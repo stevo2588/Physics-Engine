@@ -4,12 +4,13 @@
 #ifndef SHAPE_H
 #define SHAPE_H
 
+#include <TComponent.h>
 #include <Renderable.h>
 #include <Utility.h>
 #include <CollisionHandler.h>
 #include <PBTransform.h>
 
-class Shape : public Renderable {
+class Shape : public TComponent, public Renderable {
 public:
 	virtual ~Shape() {}
 
@@ -44,9 +45,6 @@ public:
 
 	// This pure virtual method should convert a const Shape& to the derived class
 	virtual const Shape& convert(const Shape& s) const=0;
-
-	// Shape's PBTransform
-	PBTransform transform;
 
 	template <typename T1, typename T2>
 	friend bool CollisionHandler::collision(const T1& s1, const T1& s1_potential,

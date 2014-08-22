@@ -1,0 +1,29 @@
+#include <Plane.h>
+
+bool Plane::intersection(const Ray& r, Hit *h) const {
+   Vector3D cameraToPlane = pos - r.src;
+
+   h->distance = (this->normal.dotProduct(cameraToPlane))/(this->normal.dotProduct(r.dir));
+   if(h->distance < 0) return false;
+
+   h->normal = this->normal;
+
+   h->uv = Vector2D(0,0); // TODO: Calculate uvs
+
+   //h->sh = this; // TODO: Not necessary...
+
+   return true;
+}
+
+void Plane::getAxisExtremes(float& left, float& right, unsigned int axis ) const {
+   if(normal.elements[axis] == 1) left = right = 0;
+   else left = right = INFINITY;
+}
+
+// TODO!
+std::vector<double> Plane::getAxisPositionsInRange(double pos1, double pos2, unsigned int axis) const {
+   std::vector<double> candidates;
+
+   return candidates;
+}
+

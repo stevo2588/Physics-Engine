@@ -29,13 +29,16 @@ protected:
 private:
    void onInit(); // Notification that moment is good for doing initializations
    void resizeScene(GLsizei width, GLsizei height);
+
    void onUpdate(); // Notification that moment is good for doing its update and drawing stuff
+
    QPaintEngine* paintEngine() const; // Return the paint engine used by the widget to draw itself
    void showEvent(QShowEvent*); // Called when the widget is shown; we use it to initialize our SFML window
    void paintEvent(QPaintEvent*); // Called when the widget needs to be painted; we use it to display a new frame
 
    QTimer myTimer;       ///< Timer used to update the view
    bool   myInitialized; ///< Tell whether the SFML window has been initialized or not
+
    std::vector<const Object*> objects;
    //std::vector<GLuint> *VBOIds;
 };

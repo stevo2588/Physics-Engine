@@ -26,15 +26,12 @@ class CollisionForce;
 class Environment {
 public:
 	Environment();
-	Environment(const PBTransform& t);
 
 	typedef std::reference_wrapper<CollidableObject> CollObjRef;
 	typedef std::reference_wrapper<Physical> PhysicalRef;
 	typedef std::reference_wrapper<ForceEnvironment> ForceEnvRef;
 	typedef std::reference_wrapper<const Force> ForceRef;
 	typedef std::unique_ptr<Force> ForcePtr;
-
-	PBTransform transform;
 
 	void addForceEnvironment(ForceEnvironment& fe);
 	void addCollidable(CollidableObject& co);

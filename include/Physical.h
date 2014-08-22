@@ -1,12 +1,15 @@
 #ifndef PHYSICAL_H
 #define PHYSICAL_H
 
-#include <memory>
-#include <vector>
-#include <functional>
 #include <CollidableObject.h>
 #include <Force.h>
 #include <PhysicallyBased.h>
+
+#include <iostream>
+#include <memory>
+#include <vector>
+#include <functional>
+
 
 // A Physical object is affected by Forces
 class Physical : public CollidableObject {
@@ -37,7 +40,11 @@ public:
 	                           const CollidableObject& updated, const Vector3D& normal) const=0;
 
 protected:
-	Physical(Shape& collider) : CollidableObject(collider) {}
+	Physical(const Object& parent, Shape& collider)
+	: CollidableObject(parent,collider) {}
+
+	Physical(const Object& parent, const Vector3D& pos, Shape& collider)
+	: CollidableObject(parent,pos,collider) {}
 
 	// This update function comes from the CollidableObject parent class. Won't need to be used
 	// unless you want use the Physical as a CollidableObject, so we leave it virtual with a

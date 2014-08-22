@@ -4,9 +4,11 @@
 #ifndef UTILITY_H
 #define UTILITY_H
 
-#include <sstream>
-
 class Matrix3D;
+
+#include <cstddef>
+#include <array>
+#include <ostream>
 
 //------------- Vector3D ----------------------------
 class Vector3D {
@@ -14,12 +16,12 @@ private:
 	const static size_t size = 3;
 
 public:
-	double elements[size];
+	float elements[size];
 
 	Vector3D();
-	Vector3D(double x, double y, double z);
+	Vector3D(float x, float y, float z);
 
-	double calcMagnitude() const;
+	float calcMagnitude() const;
 	Vector3D normalize() const;
 	Vector3D& operator=(const Vector3D &rhs);
 	Vector3D& operator+=(const Vector3D &rhs);
@@ -27,22 +29,16 @@ public:
 	Vector3D operator-() const;
 	friend Vector3D operator+(const Vector3D &v1, const Vector3D &v2);
 	friend Vector3D operator-(const Vector3D &v1, const Vector3D &v2);
-	double dotProduct(const Vector3D &v) const;
+	float dotProduct(const Vector3D &v) const;
 	Vector3D crossProduct(const Vector3D &v);
 
 	// need the same with arguments switched?
-	friend Vector3D operator*(const Vector3D &v1, const double s); 
-	friend Vector3D operator/(const Vector3D &v1, const double s);
+	friend Vector3D operator*(const Vector3D &v1, const float s); 
 	friend Vector3D operator/(const Vector3D &v1, const float s);
 	friend Vector3D operator*(const Matrix3D &s, const Vector3D &v);
 	friend Vector3D m_mult_dirVec(const Matrix3D &s, const Vector3D &v);
 
-	std::string toString() const {
-	   std::ostringstream convert;
-	   convert << "(" << elements[0] << "," << elements[1] << "," << elements[2] << ")";
-	   return convert.str();
-   }
-
+	friend std::ostream& operator<< (std::ostream &os, const Vector3D& vec);
 	friend class PBTransform;
 };
 
@@ -52,16 +48,12 @@ private:
 	const static size_t size = 2;
 
 public:
-	double elements[size];
+	float elements[size];
 
 	Vector2D() {elements[0] = 0; elements[1] = 0;}
-	Vector2D(double x, double y) {elements[0] = x; elements[1] = y;}
+	Vector2D(float x, float y) {elements[0] = x; elements[1] = y;}
 
-	std::string toString() const {
-	   std::ostringstream convert;
-	   convert << "(" << elements[0] << "," << elements[1] << ")";
-	   return convert.str();
-   }
+	friend std::ostream& operator<< (std::ostream &os, const Vector2D& vec);
 };
 
 //------------- Matrix3D ----------------------------
@@ -69,35 +61,50 @@ public:
 // matrix is always [0 0 0 1]
 class Matrix3D {
 private:
-	const static size_t rowSize = 4;
-	const static size_t rowSizeMinus1 = 3;
-	const static size_t columnSize = 4;
+	const static unsigned short rowSize = 4;
+	const static unsigned short rowSizeMinus1 = 3;
+	const static unsigned short columnSize = 4;
+	const static unsigned short arraySize = rowSize * columnSize;
 
-	double elements[rowSize][columnSize];
+	//float elements[rowSize][columnSize];
+	std::array<float, arraySize> elements;
+
+	unsigned short getIndex(unsigned short row, unsigned short column) const {
+		return row*rowSize + column;
+	}
+
+	float& getElementRef(int row, int column) {
+		return elements[getIndex(row,column)];
+	}
 
 public:
 	Matrix3D();
-	Matrix3D(double elem[rowSize][columnSize]);
-	Matrix3D(double x, double y, double z);
+	Matrix3D(nullptr_t n);
+	//Matrix3D(float elem[rowSize][columnSize]);
+	Matrix3D(float x, float y, float z);
 	void setIDMat();
 	//template <size_t rows, size_t cols>
-	void getElements(double (&e)[rowSize][columnSize]) const {
+	/*void getElements(float (&e)[rowSize][columnSize]) const {
 		for(int i=0; i<rowSize; i++) {
 			for(int j=0; j<columnSize; j++) {
 				e[i][j] = elements[i][j];
 			}
 		}
-	}
-	double getElem(int row, int column) const { return elements[row][column]; }
+	}*/
+
+	const float* getElements() const { return elements.data(); }
+	
+	//float getElem(int row, int column) const { return elements[row][column]; }
+	float getElement(int row, int column) const { return elements[getIndex(row,column)]; }
 
 	// return true if matrix is invertible, stores inverse in invOut
 	bool getInversion(Matrix3D &invOut) const;
 
 	Matrix3D& operator=(const Matrix3D &rhs);
 	friend Matrix3D operator*(const Matrix3D &s1, const Matrix3D &s2);
+	friend Vector3D operator*(const Matrix3D &s, const Vector3D &v);
 
-	std::string toString() const;
-
+	friend std::ostream& operator<<(std::ostream& os, const Matrix3D& mat);
 	friend class PBTransform;
 	friend class Renderable;
 };

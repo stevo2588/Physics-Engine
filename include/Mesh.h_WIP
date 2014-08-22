@@ -1,0 +1,23 @@
+#ifndef MESH_H
+#define MESH_H
+
+#include <Shape.h>
+
+class Mesh : public Shape {
+public: 
+	// constructs empty mesh
+	Mesh(std::string name, const Vector3D& pos) 
+		: Shape(name,pos), numTriangles(0), tris(std::vector<Triangle>()) {}
+	// constructs mesh from OBJ file
+	Mesh(std::string objFile, std::string name, const Vector3D& pos);
+
+	unsigned int getTriSize() const { return numTriangles; }
+	const Triangle* getTriangle(unsigned int index) const { return &tris[index]; }
+
+private:
+	std::vector<Triangle> tris;
+	size_t numTriangles;
+};
+
+
+#endif // MESH_H

@@ -1,0 +1,83 @@
+#include <cmath>
+#include <Mesh.h>
+
+Mesh::Mesh(std::string objFile, std::string name, const Vector3D& pos)
+   : Shape(name,pos), tris(std::vector<Triangle>())
+{
+   std::vector<Vector3D> pts;
+
+   // TODO: UVs
+   Vector2D initUV0(0,0);
+   Vector2D initUV1(1,0);
+   Vector2D initUV2(0,1);
+
+   // read OBJ
+   std::ifstream stream;
+   const char* filename = objFile.c_str();
+   stream.open(filename);
+   while(true) {
+      //std::cout << "reading" << std::endl;
+      if( stream.eof() ) break;
+      char prefix[10] = {0};
+      stream >> prefix;
+
+      switch (prefix[0]) {
+         case 'v' : {
+             switch (prefix[1]) {
+                 case 't' : {} break; // texcoords
+                 case 'n' : {} break; // normals
+                 default : { // points
+                     double x, y, z;
+                     stream >> x >> y >> z;
+                     pts.push_back(Vector3D(x,y,z));
+                 }
+             }
+         } break;
+         case 'f' : {
+             unsigned short a, b, c;
+             stream >> a >> b >> c;
+             tris.push_back(Triangle(pts[a-1],pts[b-1],pts[c-1],initUV0,initUV1,initUV2,"blah"));
+
+         } break;
+         default : { // TODO
+            // char bleh[10] = {0};
+            // while(stream != "\n") stream >> bleh;
+         }  // skip
+      }
+   }
+
+   numTriangles = tris.size();
+}
+
+/*
+bool Mesh::intersection(const Ray& r, Hit* h) const {
+   double closest = INFINITY;
+   bool didHit = false;
+   Hit closestHit;
+   unsigned int numTris = tris.size();
+
+   for(unsigned int i=0; i<numTris; i++) {
+      if(tris[i].intersection(r,h)) {
+         if(h->distance <= closest) {         // and it is the first object the ray hits
+            closest = h->distance;
+            closestHit.distance = h->distance;
+            closestHit.normal = h->normal;
+            closestHit.uv = h->uv;
+            //closestHit.sh = NULL; // TODO: not necessary..
+            didHit = true;
+         }
+      }
+   }
+   if(didHit) {
+      h->distance = closestHit.distance;
+      h->normal = closestHit.normal;
+      h->uv = closestHit.uv;
+      //h->sh = closestHit.sh; // TODO: not necessary..
+      return true;
+   }
+
+   return false;
+}
+*/
+
+

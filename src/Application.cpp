@@ -13,6 +13,7 @@
 #include <SFML/OpenGL.hpp>
 #include <GL/gl.h>
 
+#include <iostream>
 #include <string>
 #include <sstream>
 #include <sys/types.h>
@@ -26,45 +27,66 @@ Application* Application::single = NULL;
 Application::Application(std::string assets)
    : dockUi(new Ui::PhysBDock), assets(assets), physB(), assetManager()
 {
-   QDockWidget *dockWidget = new QDockWidget;
-   dockUi->setupUi(dockWidget);
-   addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
+	//------------------ WINDOW SETUP ------------------------------------------------------
+	QDockWidget *dockWidget = new QDockWidget;
+	dockUi->setupUi(dockWidget);
+	addDockWidget(Qt::BottomDockWidgetArea, dockWidget);
+
+	// Set Initial State, then Connect signals and slots
+	connect(dockUi->physBButton, SIGNAL(clicked()), this, SLOT(raytrace()));
 
 
-   //---------------- Set Initial State, then Connect signals and slots ----------------------------------------
-   connect(dockUi->physBButton, SIGNAL(clicked()), this, SLOT(raytrace()));
-
-
-   //---------------- DEFAULTS ----------------------------------------------------------------
+	//---------------- SCENE DEFAULTS ----------------------------------------------------------------
 
 	std::cout << "Beginning creation of defaults" << std::endl;
 
+	// Create World Object
+	// TODO LATER: this should go somewhere else, as it should always exist for any scene
+	assetManager.add(Object(), "WORLD");
+	//Object* worldObject = assetManager.get<Object>("WORLD");
+	
+
 	// Create default Environment
 	assetManager.add(Environment(), "defaultEnvironment");
-	Environment* defaultEnv = assetManager.get<Environment>("defaultEnvironment");
+	//Environment* defaultEnv = assetManager.get<Environment>("defaultEnvironment");
 
 	// Create a ForceEnvironment
 	assetManager.add(ForceEnvironment(), "forceEnvironment");
-	ForceEnvironment* forceEnv01 = assetManager.get<ForceEnvironment>("forceEnvironment");
+	//ForceEnvironment* forceEnv01 = assetManager.get<ForceEnvironment>("forceEnvironment");
 
 	// Create forces
-	assetManager.add(IndependentForce(Vector3D(0,-9.8,0)), "force01");
+	//assetManager.add(IndependentForce(Vector3D(0,-9.8,0)), "force01");
 	IndependentForce* f1 = assetManager.get<IndependentForce>("force01");
-	assetManager.add(IndependentForce(Vector3D(-5,0,0)), "force02");
+	//assetManager.add(IndependentForce(Vector3D(-5,0,0)), "force02");
 	IndependentForce* f2 = assetManager.get<IndependentForce>("force02");
 
 	// Create Sphere
-	assetManager.add(Sphere(2), "sphere01");
+	//assetManager.add(Sphere(2), "sphere01");
 	Sphere* sphere01 = assetManager.get<Sphere>("sphere01");
-	
+
 	// Create a RigidBody
-	assetManager.add(
-			RigidBody(*sphere01,4,Vector3D(0,0,0),0.5f,0.8f,Vector3D(0,0,0)),
-			"ball01");
+	RigidBody rb = RigidBody(*worldObject,Vector3D(0,10,0),*sphere01,4,Vector3D(0,0,0),
+	                  0.5f,0.8f, Vector3D(0,0,0));
+	
+	std::cout << rb.transform << std::endl;
+	//assetManager.add( rb, "ball01");
 	RigidBody* ball01 = assetManager.get<RigidBody>("ball01");
 
-	// Add sphere as renderable and collider for ball
+	std::cout << ball01->transform << std::endl;
+
+	// Create QuadPlane
+	//assetManager.add(QuadPlane(Vector3D(0,1,0), 20, 20), "qp01");
+	QuadPlane* qp01 = assetManager.get<QuadPlane>("qp01");
+
+	// Create a ColliderObject
+	//assetManager.add( ColliderObject(*worldObject,Vector3D(0,-15,0),*qp01), "floor" );
+	ColliderObject* floor = assetManager.get<ColliderObject>("floor");
+
+	// Add sphere as renderable for ball
 	ball01->setRenderable(sphere01);
+
+	// Add quadplane as renderable for floor
+	floor->setRenderable(qp01);
 
 	// Add forces to ForceEnvironment
 	forceEnv01->addForce(*f1, ForceEnvironment::ACCELERATION);
@@ -73,9 +95,15 @@ Application::Application(std::string assets)
 	// Add ForceEnvironment to Environment
 	defaultEnv->addForceEnvironment(*forceEnv01);
 
-	// Add RigidBody to Environment
+	// Add RigidBody and ColliderObject to Environment
 	defaultEnv->addPhysical(*ball01);
-	
+	defaultEnv->addCollidable(*floor);
+
+	// Link RigidBody to ForceEnvironment
+	// TODO: use something besides index to link
+	defaultEnv->linkForceEnv(0, 0);
+
+
 	// Add Environment to Physics Engine
 	physB.addEnvironment(*defaultEnv);
 
@@ -85,19 +113,17 @@ Application::Application(std::string assets)
 	ColliderObject& planeColl = defaultEnv.addNewColliderObject(Vector3D(0,-7,0));
 	planeColl.addNewQuadPlaneCollider(Vector3D(0,1,0), 5, 5, Vector3D(0,0,0), "c01");
 	*/
-	
+
 	std::cout << "All defaults successfully created" << std::endl;
 
-   //------------------------------------------------------------------------------------------
+	// ----------------------- Create a SFML view ------------------------------------------
+	SFMLView = new QSFMLCanvas(this, QPoint(20, 20), QSize(360, 360), 60);
+	SFMLView->addObject(ball01);
+	SFMLView->addObject(floor);
+	setCentralWidget(SFMLView);
 
-   // Create a SFML view
-   SFMLView = new QSFMLCanvas(this, QPoint(20, 20), QSize(360, 360), 60);
-   //SFMLView->addObject(*planeColl);
-   SFMLView->addObject(ball01);
-   setCentralWidget(SFMLView);
-
-   setWindowTitle("Physically Based");
-   resize(900, 800);
+	setWindowTitle("Physically Based");
+	resize(900, 800);
 }
 
 void Application::create(std::string assets) {

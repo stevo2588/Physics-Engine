@@ -1,0 +1,40 @@
+#ifndef BOX_H
+#define BOX_H
+
+#include <Shape.h>
+#include <Utility.h>
+
+class Box : public Shape {
+public:
+	// width, height, depth, name
+	Box(const Vector3D& dimensions, const Vector3D& pos, std::string name) 
+		: Shape(name,pos), dim(dimensions) {
+		planePos[0] = -4; // x
+		planePos[1] = 4; // x
+		planePos[2] = -4; // y
+		planePos[3] = 4; // y
+		planePos[4] = -4; // z
+		planePos[5] = 4; // z
+		norms[0] = Vector3D(1,0,0);
+		norms[1] = Vector3D(-1,0,0);
+		norms[2] = Vector3D(0,1,0);
+		norms[3] = Vector3D(0,-1,0);
+		norms[4] = Vector3D(0,0,1);
+		norms[5] = Vector3D(0,0,-1);
+	}
+
+	Vector3D getDim() const { return dim; }
+	float getWidth() const { return dim.elements[0]; }
+	float getHeight() const { return dim.elements[1]; }
+	float getDepth() const { return dim.elements[2]; }
+	
+
+private:
+	Vector3D dim;
+	float planePos[6];
+	Vector3D norms[6];
+
+};
+
+
+#endif // BOX_H

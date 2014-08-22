@@ -1,6 +1,6 @@
 
-#include <cmath>
-#include <SFML/OpenGL.hpp>
+#include <GL/glew.h>
+//#include <SFML/OpenGL.hpp>
 #include <GUI/QSFMLCanvas.h>
 #include <GUI/renderWindowWrapper.h>
 #include <QApplication>
@@ -8,7 +8,9 @@
 #include <Object.h>
 #include <Events.h>
 #include <Utility.h>
+
 #include <iostream> // remove me
+#include <cmath>
 
 // Platform-specific headers
 #ifdef Q_WS_X11
@@ -58,7 +60,7 @@ void QSFMLCanvas::onInit() {
 }
 
 void QSFMLCanvas::resizeScene(GLsizei width, GLsizei height) {
-	if (height==0) height=1;   // Prevent A Divide By Zero By
+	if (height==0) height=1;   // prevent division by zero by
 
 	glViewport(0, 0, width, height); // adjust the viewport when the window is resized
 	
@@ -82,9 +84,10 @@ void QSFMLCanvas::resizeScene(GLsizei width, GLsizei height) {
 }
 
 void QSFMLCanvas::onUpdate() {
-   setVerticalSyncEnabled(true);
-   
-   // handle events
+	
+	setVerticalSyncEnabled(true);
+
+	// handle events
 	sf::Event event;
 	while (pollEvent(event)) {
 		if (event.type == sf::Event::Resized) {
@@ -94,107 +97,30 @@ void QSFMLCanvas::onUpdate() {
 
 	// clear the buffers
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	glCullFace(GL_FRONT);
-	glEnable(GL_CULL_FACE);
+	//glCullFace(GL_FRONT);
+	//glEnable(GL_CULL_FACE);
+	
+
 	glLoadIdentity();//load identity matrix
 	
 	// Inverse camera position
 	glTranslatef(0,0,-20);
-	glRotatef(45.0f,0,1,0);
+	//glRotatef(45.0f,0,1,0);
 	glPushMatrix();
 
 	// for each object, call its draw function
 	int objSize = objects.size();
 	for(int i=0; i<objSize; i++) {
-		Vector3D curPos = objects[i]->transform.getPos();
-		std::cout << curPos.toString() << std::endl;
-		glTranslatef(curPos.elements[0], curPos.elements[1], curPos.elements[2]);
+		glPushMatrix();
+		//std::cout << objects[i]->transform << std::endl;
+		glMultTransposeMatrixf(objects[i]->transform.getTransform().getElements());
+
 		objects[i]->getRenderable()->openGLDraw();
 		glPopMatrix();
 	}
-    
-	/*
-	// Draw Box
-	Vector3D boxPos = box->getPos();
-	float boxWidth = box->getWidth();
-	float boxHeight = box->getHeight();
-	float boxDepth = box->getDepth();
-	// translate to front bottom left
-	glTranslatef(boxPos.elements[0]-boxWidth/2,(boxPos.elements[1]-boxHeight/2) + 7,boxPos.elements[2]+boxDepth/2);
-	//glRotatef(45.0f,0.0f,1.0f,0.0f);
-	
-	glBegin(GL_QUADS);                  // Start Drawing The Cube
-		glColor3f(0.0f,1.0f,0.0f);         // Set The Color To Green
-		glNormal3f(0,-1,0);
-		glVertex3f( boxWidth, boxHeight,-boxDepth);          // Top Right Of The Quad (Top)
-		glVertex3f(-boxWidth, boxHeight,-boxDepth);          // Top Left Of The Quad (Top)
-		glVertex3f(-boxWidth, boxHeight, boxDepth);          // Bottom Left Of The Quad (Top)
-		glVertex3f( boxWidth, boxHeight, boxDepth);          // Bottom Right Of The Quad (Top)
-		glColor3f(1.0f,0.5f,0.0f);          // Set The Color To Orange
-		glNormal3f(0,1,0);
-		glVertex3f( boxWidth,-boxHeight, boxDepth);          // Top Right Of The Quad (Bottom)
-		glVertex3f(-boxWidth,-boxHeight, boxDepth);          // Top Left Of The Quad (Bottom)
-		glVertex3f(-boxWidth,-boxHeight,-boxDepth);          // Bottom Left Of The Quad (Bottom)
-		glVertex3f( boxWidth,-boxHeight,-boxDepth);          // Bottom Right Of The Quad (Bottom)
-		glColor3f(1.0f,0.0f,0.0f);          // Set The Color To Red
-		glNormal3f(0,0,-1);
-		glVertex3f( boxWidth, boxHeight, boxDepth);          // Top Right Of The Quad (Front)
-		glVertex3f(-boxWidth, boxHeight, boxDepth);          // Top Left Of The Quad (Front)
-		glVertex3f(-boxWidth,-boxHeight, boxDepth);          // Bottom Left Of The Quad (Front)
-		glVertex3f( boxWidth,-boxHeight, boxDepth);          // Bottom Right Of The Quad (Front)
-		glColor3f(1.0f,1.0f,0.0f);          // Set The Color To Yellow
-		glNormal3f(0,0,1);
-		glVertex3f( boxWidth,-boxHeight,-boxDepth);          // Bottom Left Of The Quad (Back)
-		glVertex3f(-boxWidth,-boxHeight,-boxDepth);          // Bottom Right Of The Quad (Back)
-		glVertex3f(-boxWidth, boxHeight,-boxDepth);          // Top Right Of The Quad (Back)
-		glVertex3f( boxWidth, boxHeight,-boxDepth);          // Top Left Of The Quad (Back)
-		glColor3f(0.0f,0.0f,1.0f);      // Set The Color To Blue
-		glNormal3f(1,0,0);
-		glVertex3f(-boxWidth, boxHeight, boxDepth);  // Top Right Of The Quad (Left)
-		glVertex3f(-boxWidth, boxHeight,-boxDepth);  // Top Left Of The Quad (Left)
-		glVertex3f(-boxWidth,-boxHeight,-boxDepth);  // Bottom Left Of The Quad (Left)
-		glVertex3f(-boxWidth,-boxHeight, boxDepth);  // Bottom Right Of The Quad (Left)
-		glColor3f(1.0f,0.0f,1.0f);          // Set The Color To Violet
-		glNormal3f(-1,0,0);
-        glVertex3f( boxWidth, boxHeight,-boxDepth);          // Top Right Of The Quad (Right)
-        glVertex3f( boxWidth, boxHeight, boxDepth);          // Top Left Of The Quad (Right)
-        glVertex3f( boxWidth,-boxHeight, boxDepth);          // Bottom Left Of The Quad (Right)
-        glVertex3f( boxWidth,-boxHeight,-boxDepth);          // Bottom Right Of The Quad (Right)
-    glEnd();                        // Done Drawing The Quad
-	
+
 	glPopMatrix();
-	
-	glCullFace(GL_BACK);
-	
-	// Draw Ball
-	Vector3D ballPos = ball->getPos();
-	glTranslatef(ballPos.elements[0],ballPos.elements[1],ballPos.elements[2]);
-	//glRotatef(45.0f,0.0f,1.0f,0.0f);
-	
-	int lats=10, longs=10;
-	for(int i = 0; i <= lats; i++) {
-		double lat0 = M_PI * (-0.5 + (double) (i - 1) / lats);
-		double z0  = sin(lat0);
-		double zr0 =  cos(lat0);
-
-		double lat1 = M_PI * (-0.5 + (double) i / lats);
-		double z1 = sin(lat1);
-		double zr1 = cos(lat1);
-
-		glBegin(GL_QUAD_STRIP);
-		for(int j = 0; j <= longs; j++) {
-			double lng = 2 * M_PI * (double) (j - 1) / longs;
-			double x = cos(lng);
-			double y = sin(lng);
-
-			glNormal3f(x * zr0, y * zr0, z0);
-			glVertex3f(x * zr0, y * zr0, z0);
-			glNormal3f(x * zr1, y * zr1, z1);
-			glVertex3f(x * zr1, y * zr1, z1);
-		}
-		glEnd();
-	}
-	*/
+    
 
 /*
 	//Draw Triangle from VBO - do each time window, view point or data changes
@@ -207,6 +133,7 @@ void QSFMLCanvas::onUpdate() {
 	//Force display to be drawn now
 	//glFlush();
 */
+
 	// end the current frame (internally swaps the front and back buffers)
 	display();
 }
@@ -228,6 +155,8 @@ void QSFMLCanvas::showEvent(QShowEvent*) {
         createRenderWindow(winId()); // creates sfml window from the existing Qt window
 
         onInit(); // initialize
+
+		glewInit(); // initialize GLEW
 
         // Setup the timer to trigger a refresh at specified framerate (only necessary if you want the widget to automatically and continuously repaint itself)
         connect(&myTimer, SIGNAL(timeout()), this, SLOT(repaint()));

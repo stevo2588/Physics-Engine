@@ -5,6 +5,8 @@
 #include <map>
 #include <algorithm>
 
+#include <iostream> // TODO REMOVE
+
 // TODO POSSIBLY: is there a way, given only base classes, to get all non-abstract
 // derived classes? That'd be cool
 template <typename... Args>
